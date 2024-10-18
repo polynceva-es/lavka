@@ -74,8 +74,13 @@
 }
 
 .footer {
+    display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.footer p {
+    margin: 0 auto;
 }
