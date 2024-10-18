@@ -1,0 +1,81 @@
+@import url(./vendor/fonts/fonts.css);
+
+.page, .content {
+    max-width: 1280px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    position: relative;
+    gap: 70px;
+}
+
+.content__cabinet {
+    background-image: url(./images/FoodCabinet.svg);
+    margin: 0;
+    padding: 0;
+    width: 211.37px;
+    height: 431.35px;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-evenly;
+    column-gap: 7px;
+    row-gap: 28px;
+}
+
+.content__cabinet,
+.content__cart {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.content__cabinet li {
+    list-style-type: none;
+    height: min-content;
+}
+
+.content__cart {
+    background-image: url(./images/Cart.svg);
+    width: 276.08px;
+    height: 325.07px;
+    position: absolute;
+    top: 300px;
+    left: 0;
+}
+
+.content__button {
+    background-color: rgba(252, 224, 0, 1);
+    box-sizing: border-box;
+    padding: 19px 17px;
+    border-radius: 15px;
+    border: none;
+    font-family: 'YS Text', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: -0.5%;
+    text-align: center;
+    transition: all ease-in-out 0.2s;
+    z-index: 10;
+}
+
+.content__button:hover {
+    cursor: pointer;
+    background-color: rgb(221, 196, 3);
+    transition: all ease-in-out 0.2s;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
