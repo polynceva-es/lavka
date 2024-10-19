@@ -1,8 +1,14 @@
 @import url(./vendor/fonts/fonts.css);
 
-.page, .content {
+body {
+    margin: 0 auto;
     max-width: 1280px;
     min-width: 320px;
+    gap: 40px;
+}
+
+body,
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,8 +16,11 @@
 }
 
 .content {
-    position: relative;
     gap: 65px;
+}
+
+.content div {
+    position: relative;
 }
 
 .content__cabinet {
@@ -40,6 +49,8 @@
 .content__cabinet li {
     list-style-type: none;
     height: min-content;
+    cursor: move;
+    z-index: 9;
 }
 
 .content__cart {
@@ -48,7 +59,7 @@
     height: 325.07px;
     position: absolute;
     top: 296px;
-    left: 22px;
+    left: -33px;
 }
 
 .content__button {
@@ -73,14 +84,17 @@
     transition: all ease-in-out 0.2s;
 }
 
-.footer {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+footer {
+    margin: 20px auto;
 }
 
-.footer p {
-    margin: 0 auto;
+footer a {
+    font-family: 'YS Text', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: -0.5%;
+    text-align: center;
+    text-decoration: none;
+    color: lightslategrey;
 }
