@@ -35,8 +35,8 @@ body,
     flex-wrap: wrap;
     align-items: end;
     justify-content: space-evenly;
-    column-gap: 7px;
-    row-gap: 28px;
+    column-gap: 1px;
+    row-gap: 21px;
 }
 
 .content__cabinet,
@@ -60,6 +60,40 @@ body,
     position: absolute;
     top: 296px;
     left: -33px;
+}
+
+#wine {
+    transform: translateX(11px) translateY(-3px);
+}
+#milk {
+    transform: translateX(5px) translateY(-3px);
+}
+#jam {
+    transform: translateX(-4px) translateY(-3px);
+}
+#cheese {
+    transform: translateX(-7px);
+}
+#chicken {
+    transform: rotate(2deg) translateX(-4px) translateY(18px);
+}
+#meat {
+    transform: rotate(2deg) translateX(3px) translateY(6px);
+}
+#chips {
+    transform: translateX(-3px) translateY(9px);
+}
+#pinaple {
+    transform: translateX(7px);
+}
+#bananas {
+    transform: translateX(8px);
+}
+#apple {
+    transform: translateX(11px);
+}
+#salad {
+    transform: translateX(13px) translateY(5px);
 }
 
 .content__button {

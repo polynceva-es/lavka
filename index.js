@@ -20,7 +20,7 @@ const fillCabinet = (array) => {
     array.map((item) => {
     cabinet.insertAdjacentHTML(
       "beforeend",
-      `<li draggable="true" key=${item.name}><img src=${item.src} alt=${item.name}/></li>`
+      `<li draggable="true" id=${item.name} key=${item.name}><img src=${item.src} alt=${item.name}/></li>`
     );
   });
 };
