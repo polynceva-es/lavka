@@ -65,8 +65,8 @@ const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
     product.addEventListener('touchmove', e => {
         let touch = e.targetTouches[0];
-        product.style.left = `${touch.pageX - touch.shiftX}px`;
-        product.style.top = `${touch.pageY - touch.shiftY}px`;
+        product.style.left = `${touch.pageX - shiftX}px`;
+        product.style.top = `${touch.pageY - shiftY}px`;
         e.preventDefault();
       }, false);
 
@@ -87,6 +87,7 @@ productsList.forEach((product) => {
     // переносит продукт на координаты (pageX, pageY),
     // дополнительно учитывая изначальный сдвиг относительно указателя мыши
     function moveAt(pageX, pageY) {
+        console.log(shiftX, shiftY)
       product.style.left = pageX - shiftX + "px";
       product.style.top = pageY - shiftY + "px";
     }
