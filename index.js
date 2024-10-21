@@ -77,8 +77,6 @@ product.addEventListener('touchend', e => {
     let y = parseInt(product.style.top);
 
     //check to see if that position meets our constrains
-    
-
 })
 
 
