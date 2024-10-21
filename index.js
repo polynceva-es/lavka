@@ -12,14 +12,47 @@ const products = [
   { name: "salad", id: 11, src: "./images/Salad.svg" },
 ];
 
+let productsInCart = [];
+
 const contentSection = document.querySelector(".content");
 const button = contentSection.querySelector(".content__button");
 const cabinet = contentSection.querySelector(".content__cabinet"); //шкаф
 const cart = contentSection.querySelector(".content__cart"); //корзина
-const productsList = cabinet.querySelectorAll(".content__product");
+
+const navigateToLavka = () => {
+  location.assign("https://lavka.yandex.ru/");
+};
+
+const showButton = () => {
+  if (productsInCart.length >= 3) {
+    button.classList.add("content__button_visible");
+  } else return;
+};
+
+const handleButtonClick = (array) => {
+  console.log(array);
+  // navigateToLavka();
+};
+
+const addProductInCart = (product) => {
+  productsInCart.push({ name: product.id });
+  showButton();
+};
+
+const handleMouseMove = (evt, element) => {
+  console.log(evt);
+  element.style.position = "absolute";
+  element.style.top = evt.clientY + "px";
+  element.style.left = evt.clientX + "px";
+};
+
+const handleMouseDown = (evt, element) => {
+  //   console.log(element);
+  //   addProductInCart(element);
+};
 
 const fillCabinet = (array) => {
-    array.map((item) => {
+  array.map((item) => {
     cabinet.insertAdjacentHTML(
       "beforeend",
       `<li class="content__product" id=${item.name} key=${item.name}><img src=${item.src} alt=${item.name}/></li>`
@@ -28,40 +61,77 @@ const fillCabinet = (array) => {
 };
 fillCabinet(products);
 
-    // find the element that you want to drag.
-    var wine = document.getElementById('wine');
-    
-    /* listen to the touchMove event,
-    every time it fires, grab the location
-    of touch and assign it to box */
-    
-    wine.addEventListener('touchmove', function(e) {
-      // grab the location of touch
-      var touchLocation = e.targetTouches[0];
-      
-      // assign box new coordinates based on the touch.
-      wine.style.left = touchLocation.pageX + 'px';
-      wine.style.top = touchLocation.pageY + 'px';
-    })
-    
-    /* record the position of the touch
-    when released using touchend event.
-    This will be the drop position. */
-    
-    wine.addEventListener('touchend', function(e) {
-      // current box position.
-      var x = parseInt(wine.style.left);
-      var y = parseInt(wine.style.top);
-    })
-    
+const productsList = cabinet.querySelectorAll(".content__product");
+productsList.forEach((product) => {
+  product.onmousedown = function (event) {
+    let shiftX = event.clientX - product.getBoundingClientRect().left;
+    let shiftY = event.clientY - product.getBoundingClientRect().top;
 
+    product.style.position = "absolute";
+    product.style.zIndex = 5;
+    document.body.append(product);
 
+    moveAt(event.pageX, event.pageY);
 
+    // переносит продукт на координаты (pageX, pageY),
+    // дополнительно учитывая изначальный сдвиг относительно указателя мыши
+    function moveAt(pageX, pageY) {
+      product.style.left = pageX - shiftX + "px";
+      product.style.top = pageY - shiftY + "px";
+    }
 
+    // потенциальная цель переноса, над которой мы пролетаем прямо сейчас
+    let currentDroppable = null;
 
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
 
+      product.hidden = true;
+      let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+      product.hidden = false;
 
+      // событие mousemove может произойти и когда указатель за пределами окна
+      // (мяч перетащили за пределы экрана)
 
-button.addEventListener("click", () =>
-  location.assign("https://lavka.yandex.ru/")
-);
+      // если clientX/clientY за пределами окна, elementFromPoint вернёт null
+      if (!elemBelow) return;
+
+      // потенциальные цели переноса помечены классом 'content__cart' (может быть и другая логика)
+      let droppableBelow = elemBelow.closest(".content__cart");
+
+      if (currentDroppable != droppableBelow) {
+        // мы либо залетаем на цель, либо улетаем из неё
+        // внимание: оба значения могут быть null
+        //   currentDroppable=null,
+        //     если мы были не над droppable до этого события (например, над пустым пространством)
+        //   droppableBelow=null,
+        //     если мы не над droppable именно сейчас, во время этого события
+
+        if (currentDroppable) {
+          // логика обработки процесса "вылета" из droppable (удаляем подсветку)
+          //   leaveDroppable(currentDroppable);
+        }
+        currentDroppable = droppableBelow;
+        if (currentDroppable) {
+          // логика обработки процесса, когда мы "влетаем" в элемент droppable
+          addProductInCart(product);
+        }
+      }
+    }
+
+    // передвигаем продукт при событии mousemove
+    document.addEventListener("mousemove", onMouseMove);
+
+    // отпустить продукт, удалить ненужные обработчики
+    product.onmouseup = function () {
+      document.removeEventListener("mousemove", onMouseMove);
+      product.onmouseup = null;
+    };
+  };
+
+  product.ondragstart = function () {
+    return false;
+  };
+});
+
+button.addEventListener("click", () => handleButtonClick(productsInCart));

@@ -29,14 +29,15 @@ body,
     padding: 0;
     width: 211.37px;
     height: 431.35px;
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     align-content: flex-start;
     flex-wrap: wrap;
     align-items: end;
     justify-content: space-evenly;
     column-gap: 1px;
-    row-gap: 21px;
+    row-gap: 21px; */
+    position: relative;
 }
 
 .content__cabinet,
@@ -46,11 +47,12 @@ body,
     background-size: contain;
 }
 
-.content__cabinet li {
+.content__product {
     list-style-type: none;
     height: min-content;
     cursor: move;
     z-index: 9;
+    position: absolute;
 }
 
 .content__cart {
@@ -63,37 +65,59 @@ body,
 }
 
 #wine {
-    transform: translateX(11px) translateY(-3px);
+    top: -2px;
+    left: 21px;
+    /* transform: translateX(11px) translateY(-3px); */
 }
 #milk {
-    transform: translateX(5px) translateY(-3px);
+    top: 32px;
+    left: 63px;
+    /* transform: translateX(5px) translateY(-3px); */
 }
 #jam {
-    transform: translateX(-4px) translateY(-3px);
+    top: 80px;
+    left: 102px;
+    /* transform: translateX(-4px) translateY(-3px); */
 }
 #cheese {
-    transform: translateX(-7px);
-}
-#chicken {
-    transform: rotate(2deg) translateX(-4px) translateY(18px);
+    top: 90px;
+    left: 157px;
+    /* transform: translateX(-7px); */
 }
 #meat {
-    transform: rotate(2deg) translateX(3px) translateY(6px);
+    top: 168px;
+    left: 5px;
+    /* transform: rotate(2deg) translateX(3px) translateY(6px); */
+}
+#chicken {
+    top: 170px;
+    left: 56px;
+    /* transform: rotate(2deg) translateX(-4px) translateY(18px); */
 }
 #chips {
-    transform: translateX(-3px) translateY(9px);
+    top: 177px;
+    left: 128px;
+    /* transform: translateX(-3px) translateY(9px); */
 }
 #pinaple {
-    transform: translateX(7px);
+    top: 238px;
+    left: 11px;
+    /* transform: translateX(7px); */
 }
 #bananas {
-    transform: translateX(8px);
+    top: 266px;
+    left: 57px;
+    /* transform: translateX(8px); */
 }
 #apple {
-    transform: translateX(11px);
+    top: 277px;
+    left: 114px;
+    /* transform: translateX(11px); */
 }
 #salad {
-    transform: translateX(13px) translateY(5px);
+    top: 269px;
+    left: 154px;
+    /* transform: translateX(13px) translateY(5px); */
 }
 
 .content__button {
@@ -110,6 +134,12 @@ body,
     text-align: center;
     transition: all ease-in-out 0.2s;
     z-index: 10;
+    display: none;
+}
+
+.content__button_visible {
+    transition: all ease-in-out 0.2s;
+    display: block;
 }
 
 .content__button:hover {
@@ -118,11 +148,11 @@ body,
     transition: all ease-in-out 0.2s;
 }
 
-footer {
+header {
     margin: 20px auto;
 }
 
-footer a {
+header a {
     font-family: 'YS Text', Arial, sans-serif;
     font-weight: 500;
     font-size: 16px;
