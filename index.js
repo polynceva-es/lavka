@@ -27,8 +27,8 @@ const showButton = () => {
   if (productsInCart.length >= 3) {
     button.classList.add("content__button_visible");
   } else {
-    button.classList.remove("content__button_visible")
-  };
+    button.classList.remove("content__button_visible");
+  }
 };
 
 const handleButtonClick = (array) => {
@@ -50,7 +50,7 @@ const deleteProductFromCart = (product) => {
     return elem.name !== deletedElem.name;
   });
   productsInCart = filteredProducts;
-  showButton()
+  showButton();
 };
 
 const handleMouseMove = (evt, element) => {
@@ -69,32 +69,87 @@ const fillCabinet = (array) => {
   array.map((item) => {
     cabinet.insertAdjacentHTML(
       "beforeend",
-      `<li class="content__product" id=${item.name} key=${item.name}><img src=${item.src} alt=${item.name}/></li>`
+      `<li class="content__product" id=${item.name} key=${item.name}><img src=${item.src} alt=${item.name}></li>`
     );
   });
 };
 fillCabinet(products);
 
+let moveTouchObject = [];
+
 const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
+
+  product.addEventListener("touchend", (e) => {
+    e.preventDefault();
+    moveTouchObject=moveTouchObject.filter((el) => el.name !== e.target.alt) 
+  }, false);
+
+  product.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    let touch = e.targetTouches[0];
+    if (
+      moveTouchObject.find((el) => el.name === e.target.alt) === undefined
+    ) {
+      let shiftX = touch.clientX - product.getBoundingClientRect().left;
+      let shiftY = touch.clientY - product.getBoundingClientRect().top;
+      const shiftObject = { name: e.target.alt, shiftX, shiftY, currentDroppable: null }
+      moveTouchObject.push(shiftObject);
+
+      product.style.position = "absolute";
+      product.style.zIndex = 5;
+      document.body.append(product);
+      product.style.left = `${touch.pageX - shiftObject.shiftX}px`;
+      product.style.top = `${touch.pageY - shiftObject.shiftY}px`;
+    } 
+  }, false);
+
   product.addEventListener(
     "touchmove",
     (e) => {
-      let touch = e.targetTouches[0];
-      product.style.left = `${touch.pageX}px`;
-      product.style.top = `${touch.pageY}px`;
       e.preventDefault();
+      let touch = e.targetTouches[0];
+      const shiftObject = moveTouchObject.find((el) => el.name === e.target.alt)
+      product.style.left = `${touch.pageX - shiftObject.shiftX}px`;
+      product.style.top = `${touch.pageY - shiftObject.shiftY}px`;
+      
+      let currentDroppable = shiftObject.currentDroppable;
+
+      product.hidden = true;
+      let elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+      product.hidden = false;
+
+      // событие mousemove может произойти и когда указатель за пределами окна
+      // (мяч перетащили за пределы экрана)
+
+      // если clientX/clientY за пределами окна, elementFromPoint вернёт null
+      if (!elemBelow) return;
+
+      // потенциальные цели переноса помечены классом 'content__cart' (может быть и другая логика)
+      let droppableBelow = elemBelow.closest(".content__cart");
+
+      if (currentDroppable != droppableBelow) {
+        // мы либо залетаем на цель, либо улетаем из неё
+        // внимание: оба значения могут быть null
+        //   currentDroppable=null,
+        //     если мы были не над droppable до этого события (например, над пустым пространством)
+        //   droppableBelow=null,
+        //     если мы не над droppable именно сейчас, во время этого события
+
+        if (currentDroppable) {
+          // логика обработки процесса "вылета" из droppable (удаляем подсветку)
+          deleteProductFromCart(product);
+        }
+        currentDroppable = droppableBelow;
+        shiftObject.currentDroppable = droppableBelow
+        if (currentDroppable) {
+          // логика обработки процесса, когда мы "влетаем" в элемент droppable
+          addProductInCart(product);
+        }
+      }
     },
     false
   );
-
-  product.addEventListener("touchend", (e) => {
-    //current position when element droped
-    let x = parseInt(product.style.left);
-    let y = parseInt(product.style.top);
-
-    //check to see if that position meets our constrains
-  });
 
   product.onmousedown = function (event) {
     let shiftX = event.clientX - product.getBoundingClientRect().left;
@@ -162,7 +217,7 @@ productsList.forEach((product) => {
     };
   };
 
-  product.ondragstart = function () {
+  product.ondragstart = () => {
     return false;
   };
 });
