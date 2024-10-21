@@ -65,8 +65,8 @@ const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
     product.addEventListener('touchmove', e => {
         let touch = e.targetTouches[0];
-        product.style.left = `${touch.pageX}px`;
-        product.style.top = `${touch.pageY}px`;
+        product.style.left = `${touch.pageX - touch.shiftX}px`;
+        product.style.top = `${touch.pageY - touch.shiftY}px`;
         e.preventDefault();
       }, false);
 
