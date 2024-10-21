@@ -161,14 +161,14 @@ body,
     line-height: 17px;
     letter-spacing: -0.5%;
     text-align: center;
-    transition: all ease-in-out 0.2s;
+    transition: visibility ease-in-out 0.5s;
     z-index: 10;
-    display: none;
+    visibility: hidden;
 }
 
 .content__button_visible {
-    transition: all ease-in-out 0.2s;
-    display: block;
+    transition: visibility ease-in-out 0.5s;
+    visibility: visible;
 }
 
 .content__button:hover {

@@ -26,7 +26,9 @@ const navigateToLavka = () => {
 const showButton = () => {
   if (productsInCart.length >= 3) {
     button.classList.add("content__button_visible");
-  } else return;
+  } else {
+    button.classList.remove("content__button_visible")
+  };
 };
 
 const handleButtonClick = (array) => {
@@ -35,8 +37,20 @@ const handleButtonClick = (array) => {
 };
 
 const addProductInCart = (product) => {
-  productsInCart.push({ name: product.id });
+  const newElem = productsInCart.find((el) => product.id === el.name);
+  if (!newElem) {
+    productsInCart.push({ name: product.id });
+  }
   showButton();
+};
+
+const deleteProductFromCart = (product) => {
+  const deletedElem = productsInCart.find((el) => product.id === el.name);
+  const filteredProducts = productsInCart.filter((elem) => {
+    return elem.name !== deletedElem.name;
+  });
+  productsInCart = filteredProducts;
+  showButton()
 };
 
 const handleMouseMove = (evt, element) => {
@@ -63,23 +77,24 @@ fillCabinet(products);
 
 const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
-    product.addEventListener('touchmove', e => {
-        let touch = e.targetTouches[0];
-        product.style.left = `${touch.pageX}px`;
-        product.style.top = `${touch.pageY}px`;
-        e.preventDefault();
-      }, false);
+  product.addEventListener(
+    "touchmove",
+    (e) => {
+      let touch = e.targetTouches[0];
+      product.style.left = `${touch.pageX}px`;
+      product.style.top = `${touch.pageY}px`;
+      e.preventDefault();
+    },
+    false
+  );
 
-product.addEventListener('touchend', e => {
-
+  product.addEventListener("touchend", (e) => {
     //current position when element droped
     let x = parseInt(product.style.left);
     let y = parseInt(product.style.top);
 
     //check to see if that position meets our constrains
-})
-
-
+  });
 
   product.onmousedown = function (event) {
     let shiftX = event.clientX - product.getBoundingClientRect().left;
@@ -94,7 +109,6 @@ product.addEventListener('touchend', e => {
     // переносит продукт на координаты (pageX, pageY),
     // дополнительно учитывая изначальный сдвиг относительно указателя мыши
     function moveAt(pageX, pageY) {
-        console.log(shiftX, shiftY)
       product.style.left = pageX - shiftX + "px";
       product.style.top = pageY - shiftY + "px";
     }
@@ -128,7 +142,7 @@ product.addEventListener('touchend', e => {
 
         if (currentDroppable) {
           // логика обработки процесса "вылета" из droppable (удаляем подсветку)
-          //   leaveDroppable(currentDroppable);
+          deleteProductFromCart(product);
         }
         currentDroppable = droppableBelow;
         if (currentDroppable) {
