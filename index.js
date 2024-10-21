@@ -65,12 +65,21 @@ const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
     product.addEventListener('touchmove', e => {
         let touch = e.targetTouches[0];
-        product.style.left = `${touch.pageX - shiftX}px`;
-        product.style.top = `${touch.pageY - shiftY}px`;
+        product.style.left = `${touch.pageX}px`;
+        product.style.top = `${touch.pageY}px`;
         e.preventDefault();
       }, false);
 
+product.addEventListener('touchend', e => {
 
+    //current position when element droped
+    let x = parseInt(product.style.left);
+    let y = parseInt(product.style.top);
+
+    //check to see if that position meets our constrains
+    
+
+})
 
 
 
