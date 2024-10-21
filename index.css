@@ -37,7 +37,15 @@ body,
     justify-content: space-evenly;
     column-gap: 1px;
     row-gap: 21px; */
+
     position: relative;
+
+    /* display: grid;
+    justify-items: center;
+    align-items: end;
+    grid-template-columns: repeat(4, min-content);
+    grid-template-rows: repeat(3, min-content);
+    grid-template-areas: "wine milk jam cheese" "meat chicken chicken chips" "pinaple bananas apple salad"; */
 }
 
 .content__cabinet,
@@ -65,56 +73,77 @@ body,
 }
 
 #wine {
+    /* grid-area: "wine"; */
     top: -2px;
     left: 21px;
     /* transform: translateX(11px) translateY(-3px); */
 }
+
 #milk {
+    /* grid-area: "milk"; */
     top: 32px;
     left: 63px;
     /* transform: translateX(5px) translateY(-3px); */
 }
+
 #jam {
+    /* grid-area: jam; */
     top: 80px;
     left: 102px;
     /* transform: translateX(-4px) translateY(-3px); */
 }
+
 #cheese {
+    /* grid-area: cheese; */
     top: 90px;
     left: 157px;
     /* transform: translateX(-7px); */
 }
+
 #meat {
+    /* grid-area: meat; */
     top: 168px;
     left: 5px;
     /* transform: rotate(2deg) translateX(3px) translateY(6px); */
 }
+
 #chicken {
+    /* grid-area: chicken; */
     top: 170px;
     left: 56px;
     /* transform: rotate(2deg) translateX(-4px) translateY(18px); */
 }
+
 #chips {
+    /* grid-area: chips; */
     top: 177px;
     left: 128px;
     /* transform: translateX(-3px) translateY(9px); */
 }
+
 #pinaple {
+    /* grid-area: pinaple; */
     top: 238px;
     left: 11px;
     /* transform: translateX(7px); */
 }
+
 #bananas {
+    /* grid-area: bananas; */
     top: 266px;
     left: 57px;
     /* transform: translateX(8px); */
 }
+
 #apple {
+    /* grid-area: apple; */
     top: 277px;
     left: 114px;
     /* transform: translateX(11px); */
 }
+
 #salad {
+    /* grid-area: salad; */
     top: 269px;
     left: 154px;
     /* transform: translateX(13px) translateY(5px); */

@@ -63,6 +63,17 @@ fillCabinet(products);
 
 const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
+    product.addEventListener('touchmove', e => {
+        let touch = e.targetTouches[0];
+        product.style.left = `${touch.pageX}px`;
+        product.style.top = `${touch.pageY}px`;
+        e.preventDefault();
+      }, false);
+
+
+
+
+
   product.onmousedown = function (event) {
     let shiftX = event.clientX - product.getBoundingClientRect().left;
     let shiftY = event.clientY - product.getBoundingClientRect().top;
