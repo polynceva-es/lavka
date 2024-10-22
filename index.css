@@ -26,31 +26,33 @@ body,
 .content__cabinet {
     background-image: url(./images/FoodCabinet.svg);
     margin: 0;
-    padding: 0;
+    padding-left: 0;
+
     width: 211.37px;
     height: 431.35px;
-    /* display: flex;
-    flex-direction: row;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    align-items: end;
-    justify-content: space-evenly;
-    column-gap: 1px;
-    row-gap: 21px; */
 
     position: relative;
-
-    /* display: grid;
-    justify-items: center;
-    align-items: end;
-    grid-template-columns: repeat(4, min-content);
-    grid-template-rows: repeat(3, min-content);
-    grid-template-areas: "wine milk jam cheese" "meat chicken chicken chips" "pinaple bananas apple salad"; */
+        /* box-sizing: border-box;
+        padding-top: 6vw;
+        width: 40vw;
+        height: 80vh;
+        display: grid;
+        justify-content: center;
+        align-content: start;
+        justify-items: center;
+        align-items: end;
+        grid-template-columns: repeat(4, minmax(7vw, max-content));
+        grid-template-rows: repeat(3, minmax(12vw, max-content));
+        grid-template-areas:
+            "wine milk jam cheese"
+            "meat chicken chicken chips"
+            "pinaple bananas apple salad";
+        row-gap: 3vw; */
 }
 
 .content__cabinet,
 .content__cart {
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -63,90 +65,100 @@ body,
     position: absolute;
 }
 
+.content__img {
+    width: 100%;
+    height: auto;
+}
+
 .content__cart {
     background-image: url(./images/Cart.svg);
+
     width: 276.08px;
     height: 325.07px;
+    
+    /* width: 45vw;
+    height: 16em; */
     position: absolute;
-    top: 296px;
+    top: 343px;
+    /* bottom: -100px; */
     left: -33px;
 }
 
 #wine {
-    /* grid-area: "wine"; */
+    /* grid-area: wine;
+    transform: translateX(11px) translateY(-3px); */
     top: -2px;
     left: 21px;
-    /* transform: translateX(11px) translateY(-3px); */
 }
 
 #milk {
-    /* grid-area: "milk"; */
+    /* grid-area: milk;
+    transform: translateX(3px) translateY(-3px); */
     top: 32px;
     left: 63px;
-    /* transform: translateX(5px) translateY(-3px); */
 }
 
 #jam {
-    /* grid-area: jam; */
+    /* grid-area: jam;
+    transform: translateX(0px) translateY(-3px); */
     top: 80px;
     left: 102px;
-    /* transform: translateX(-4px) translateY(-3px); */
 }
 
 #cheese {
-    /* grid-area: cheese; */
+    /* grid-area: cheese;
+    transform: translateX(-11px); */
     top: 90px;
     left: 157px;
-    /* transform: translateX(-7px); */
 }
 
 #meat {
-    /* grid-area: meat; */
+    /* grid-area: meat;
+    transform: rotate(2deg) translateX(5px) translateY(6px); */
     top: 168px;
     left: 5px;
-    /* transform: rotate(2deg) translateX(3px) translateY(6px); */
 }
 
 #chicken {
-    /* grid-area: chicken; */
+    /* grid-area: chicken;
+    transform: rotate(2deg) translateX(-10px) translateY(18px); */
     top: 170px;
     left: 56px;
-    /* transform: rotate(2deg) translateX(-4px) translateY(18px); */
 }
 
 #chips {
-    /* grid-area: chips; */
+    /* grid-area: chips;
+    transform: translateX(-19px) translateY(9px); */
     top: 177px;
     left: 128px;
-    /* transform: translateX(-3px) translateY(9px); */
 }
 
 #pinaple {
-    /* grid-area: pinaple; */
+    /* grid-area: pinaple;
+    transform: translateX(2px) translateY(-3px); */
     top: 238px;
     left: 11px;
-    /* transform: translateX(7px); */
 }
 
 #bananas {
-    /* grid-area: bananas; */
+    /* grid-area: bananas;
+    transform: translateX(3px) translateY(-2px); */
     top: 266px;
     left: 57px;
-    /* transform: translateX(8px); */
 }
 
 #apple {
-    /* grid-area: apple; */
+    /* grid-area: apple;
+    transform: translateX(5px) translateY(-3px); */
     top: 277px;
     left: 114px;
-    /* transform: translateX(11px); */
 }
 
 #salad {
-    /* grid-area: salad; */
+    /* grid-area: salad;
+    transform: translateX(0px) translateY(3px); */
     top: 269px;
     left: 154px;
-    /* transform: translateX(13px) translateY(5px); */
 }
 
 .content__button {
