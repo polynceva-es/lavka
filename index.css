@@ -32,7 +32,7 @@ body,
     height: 431.35px;
 
     position: relative;
-        /* box-sizing: border-box;
+    /* box-sizing: border-box;
         padding-top: 6vw;
         width: 40vw;
         height: 80vh;
@@ -75,7 +75,7 @@ body,
 
     width: 276.08px;
     height: 325.07px;
-    
+
     /* width: 45vw;
     height: 16em; */
     position: absolute;
@@ -173,14 +173,14 @@ body,
     line-height: 17px;
     letter-spacing: -0.5%;
     text-align: center;
-    transition: visibility ease-in-out 0.5s;
+    transition: opacity ease-in-out 0.5s;
     z-index: 10;
-    visibility: hidden;
+    opacity: 0;
 }
 
 .content__button_visible {
-    transition: visibility ease-in-out 0.5s;
-    visibility: visible;
+    transition: opacity ease-in-out 0.5s;
+    opacity: 1;
 }
 
 .content__button:hover {

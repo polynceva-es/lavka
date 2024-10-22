@@ -33,7 +33,7 @@ const showButton = () => {
 
 const handleButtonClick = (array) => {
   console.log(array);
-  // navigateToLavka();
+  navigateToLavka();
 };
 
 const addProductInCart = (product) => {
@@ -67,7 +67,7 @@ let moveTouchObject = [];
 
 const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
-product.addEventListener("dragstart", (e) => e.preventDefault());
+product.addEventListener("dragstart", (event) => event.preventDefault());
   const onTouchend = (event) => {
     event.preventDefault();
     moveTouchObject = moveTouchObject.filter(
