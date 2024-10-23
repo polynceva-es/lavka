@@ -62,6 +62,7 @@ const handleMove = (product, x, y, currentDroppable) => {
   if (!elemBelow) return;
 
   let cart = elemBelow.closest(".content__cart");
+  let cartList = contentSection.querySelector(".content__cart-list")
 
   if (currentDroppable != cart) {
     if (currentDroppable) {
@@ -72,10 +73,12 @@ const handleMove = (product, x, y, currentDroppable) => {
     if (currentDroppable) {
       //положить в корзину
       addProductInCart(product);
-      // cart.append(product);
-      // shiftX = shiftX + cart.getBoundingClientRect().left;
-      // shiftY = shiftY + cart.getBoundingClientRect().top;
-      // moveAt(event.clientX, event.clientY);
+      cartList.append(product);
+      product.classList.remove('content__product_absolute');
+      product.style.position = "";
+      product.classList.add('content__product_static');
+      product.style.top="";
+      product.style.left = "";
     }
   }
 };
@@ -84,7 +87,7 @@ const fillCabinet = (array) => {
   array.map((item) => {
     cabinet.insertAdjacentHTML(
       "beforeend",
-      `<li class="content__product" id=${item.name} key=${item.name}><img class="content__img" src=${item.src} alt=${item.name}></li>`
+      `<li class="content__product content__product_absolute" id=${item.name} key=${item.name}><img class="content__img" src=${item.src} alt=${item.name}></li>`
     );
   });
 };

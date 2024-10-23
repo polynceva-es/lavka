@@ -50,7 +50,7 @@ body,
     gap: 65px;
 }
 
-.content div {
+.content section {
     position: relative;
 }
 
@@ -72,10 +72,16 @@ body,
 
 .content__product {
     list-style-type: none;
-    height: min-content;
     cursor: move;
     z-index: 9;
+}
+
+.content__product_absolute {
     position: absolute;
+}
+
+.content__product_static {
+    position: static;
 }
 
 .content__img {
@@ -85,15 +91,30 @@ body,
 
 .content__cart {
     background-image: url(./images/Cart.svg);
-    margin: 0;
-    padding-left: 0;
+    z-index: 9;
     width: var(--cart-width);
     height: var(--cart-height);
     position: absolute;
-    z-index: 9;
     top: calc(343 * var(--ratio-cabinet-height));
     left: calc(-33 * var(--ratio-cabinet-width));
+}
 
+.content__cart-list {
+    z-index: 8;
+    margin: 0;
+    padding-left: 0;
+    display: grid;
+    grid-template-rows: repeat(1, 53%);
+    grid-template-columns: repeat(5, 10%);
+    justify-content: center;
+    justify-items: flex-start;
+    align-items: flex-end;
+    align-content: center;
+    width: var(--cart-width);
+    height: var(--cart-height);
+    position: absolute;
+    top: calc(343 * var(--ratio-cabinet-height));
+    left: calc(-33 * var(--ratio-cabinet-width));
 }
 
 #wine {
@@ -185,12 +206,14 @@ body,
     line-height: 17px;
     letter-spacing: -0.5%;
     text-align: center;
+    -webkit-transition: opacity ease-in-out 0.5s;
     transition: opacity ease-in-out 0.5s;
     z-index: 10;
     opacity: 0;
 }
 
 .content__button_visible {
+    -webkit-transition: opacity ease-in-out 0.5s;
     transition: opacity ease-in-out 0.5s;
     opacity: 1;
 }
@@ -198,34 +221,10 @@ body,
 .content__button:hover {
     cursor: pointer;
     background-color: rgb(221, 196, 3);
-    transition: all ease-in-out 0.2s;
+    -webkit-transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
 }
 
 .content__button:disabled {
     cursor: default;
-}
-
-footer {
-    margin: 20px auto;
-    z-index: 11;
-}
-
-footer a {
-    font-family: 'YS Text', Arial, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 17px;
-    letter-spacing: -0.5%;
-    text-align: center;
-    text-decoration: none;
-    color: lightslategrey;
-    transition: all ease-in-out 0.5s;
-}
-
-@media (max-width: 680px) {
-    footer a {
-        font-size: 14px;
-        line-height: 15px;
-        transition: all ease-in-out 0.5s;
-    }
 }
