@@ -50,7 +50,7 @@ body,
     gap: 65px;
 }
 
-.content section {
+.content__container {
     position: relative;
 }
 
