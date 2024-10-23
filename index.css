@@ -12,7 +12,7 @@ body {
     --cabinet-width: max(211.37px, min(calc(70vh * var(--cabinet-width-default) / var(--cabinet-height-default)), 40vw));
     --cabinet-height: calc(var(--cabinet-width)*(var(--cabinet-height-default)/ var(--cabinet-width-default)));
     --cart-width: calc(276.08 * var(--ratio-cabinet-width));
-    --cart-height: calc(325.07 * var(--ratio-cabinet-height));
+    --cart-height: calc(228.04 * var(--ratio-cabinet-height));
 
     --wine-width: calc(37 * var(--ratio-cabinet-width));
     --wine-height: calc(124.12 * var(--ratio-cabinet-height));
@@ -46,7 +46,10 @@ body,
     justify-content: center;
 }
 
-.content{gap: 65px;}
+.content {
+    gap: 65px;
+    margin-top: 20px;
+}
 
 .content div {
     position: relative;
@@ -83,6 +86,8 @@ body,
 
 .content__cart {
     background-image: url(./images/Cart.svg);
+    margin: 0;
+    padding-left: 0;
     width: var(--cart-width);
     height: var(--cart-height);
     position: absolute;
@@ -130,8 +135,8 @@ body,
 #chicken {
     width: var(--chicken-width);
     height: var(--chicken-height);
-    top: calc(170 * var(--ratio-cabinet-height));
-    left: calc(56 * var(--ratio-cabinet-width));
+    top: calc(174 * var(--ratio-cabinet-height));
+    left: calc(60 * var(--ratio-cabinet-width));
 }
 
 #chips {
@@ -197,11 +202,16 @@ body,
     transition: all ease-in-out 0.2s;
 }
 
-header {
-    margin: 20px auto;
+.content__button:disabled {
+    cursor: default;
 }
 
-header a {
+footer {
+    margin: 20px auto;
+    z-index: 11;
+}
+
+footer a {
     font-family: 'YS Text', Arial, sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -214,9 +224,9 @@ header a {
 }
 
 @media (max-width: 680px) {
-    header a {
+    footer a {
         font-size: 14px;
         line-height: 15px;
-        transition: all ease-in-out 0.5s; 
+        transition: all ease-in-out 0.5s;
     }
 }

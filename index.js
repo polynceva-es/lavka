@@ -25,8 +25,10 @@ const navigateToLavka = () => {
 
 const showButton = () => {
   if (productsInCart.length >= 3) {
+    button.removeAttribute("disabled");
     button.classList.add("content__button_visible");
   } else {
+    button.setAttribute("disabled", true);
     button.classList.remove("content__button_visible");
   }
 };
@@ -67,7 +69,7 @@ let moveTouchObject = [];
 
 const productsList = cabinet.querySelectorAll(".content__product");
 productsList.forEach((product) => {
-product.addEventListener("dragstart", (event) => event.preventDefault());
+  product.addEventListener("dragstart", (event) => event.preventDefault());
   const onTouchend = (event) => {
     event.preventDefault();
     moveTouchObject = moveTouchObject.filter(
@@ -128,10 +130,14 @@ product.addEventListener("dragstart", (event) => event.preventDefault());
       if (currentDroppable) {
         //положить в корзину
         addProductInCart(product);
+        // cart.append(product);
+        // shiftX = shiftX + cart.getBoundingClientRect().left;
+        // shiftY = shiftY + cart.getBoundingClientRect().top;
+        // moveAt(event.clientX, event.clientY);
       }
     }
   };
-  
+
   const onMouseDown = (event) => {
     let shiftX = event.clientX - product.getBoundingClientRect().left;
     let shiftY = event.clientY - product.getBoundingClientRect().top;
@@ -140,8 +146,7 @@ product.addEventListener("dragstart", (event) => event.preventDefault());
     product.style.zIndex = 5;
     document.body.append(product);
 
-    // переносит продукт на координаты (pageX, pageY),
-    // дополнительно учитывая изначальный сдвиг относительно указателя мыши
+    // переносит продукт на координаты (pageX, pageY), учитывая изначальный сдвиг относительно указателя мыши
     const moveAt = (pageX, pageY) => {
       product.style.left = pageX - shiftX + "px";
       product.style.top = pageY - shiftY + "px";
@@ -171,6 +176,10 @@ product.addEventListener("dragstart", (event) => event.preventDefault());
         if (currentDroppable) {
           //положить в корзину
           addProductInCart(product);
+          // cart.append(product);
+          // shiftX = shiftX + cart.getBoundingClientRect().left;
+          // shiftY = shiftY + cart.getBoundingClientRect().top;
+          // moveAt(event.clientX, event.clientY);
         }
       }
     };
