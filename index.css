@@ -4,7 +4,38 @@ body {
     margin: 0 auto;
     max-width: 1280px;
     min-width: 320px;
-    gap: 40px;
+    gap: 20px;
+    --cabinet-width-default: 211.37;
+    --cabinet-height-default: 431.35;
+    --ratio-cabinet-width: calc(var(--cabinet-width) / var(--cabinet-width-default));
+    --ratio-cabinet-height: calc(var(--cabinet-height) / var(--cabinet-height-default));
+    --cabinet-width: max(211.37px, min(calc(70vh * var(--cabinet-width-default) / var(--cabinet-height-default)), 40vw));
+    --cabinet-height: calc(var(--cabinet-width)*(var(--cabinet-height-default)/ var(--cabinet-width-default)));
+    --cart-width: calc(276.08 * var(--ratio-cabinet-width));
+    --cart-height: calc(325.07 * var(--ratio-cabinet-height));
+
+    --wine-width: calc(37 * var(--ratio-cabinet-width));
+    --wine-height: calc(124.12 * var(--ratio-cabinet-height));
+    --milk-width: calc(37 * var(--ratio-cabinet-width));
+    --milk-height: calc(90.73 * var(--ratio-cabinet-height));
+    --jam-width: calc(46 * var(--ratio-cabinet-width));
+    --jam-height: calc(41.34 * var(--ratio-cabinet-height));
+    --cheese-width: calc(36.2 * var(--ratio-cabinet-width));
+    --cheese-height: calc(34.38 * var(--ratio-cabinet-height));
+    --meat-width: calc(49 * var(--ratio-cabinet-width));
+    --meat-height: calc(48.76 * var(--ratio-cabinet-height));
+    --chicken-width: calc(54.47 * var(--ratio-cabinet-width));
+    --chicken-height: calc(49.85 * var(--ratio-cabinet-height));
+    --chips-width: calc(76.17 * var(--ratio-cabinet-width));
+    --chips-height: calc(46.98 * var(--ratio-cabinet-height));
+    --pinaple-width: calc(35 * var(--ratio-cabinet-width));
+    --pinaple-height: calc(74.08 * var(--ratio-cabinet-height));
+    --bananas-width: calc(47 * var(--ratio-cabinet-width));
+    --bananas-height: calc(47.41 * var(--ratio-cabinet-height));
+    --apple-width: calc(31 * var(--ratio-cabinet-width));
+    --apple-height: calc(35.99 * var(--ratio-cabinet-height));
+    --salad-width: calc(61.74 * var(--ratio-cabinet-width));
+    --salad-height: calc(50.98 * var(--ratio-cabinet-height));
 }
 
 body,
@@ -15,9 +46,7 @@ body,
     justify-content: center;
 }
 
-.content {
-    gap: 65px;
-}
+.content{gap: 65px;}
 
 .content div {
     position: relative;
@@ -27,27 +56,9 @@ body,
     background-image: url(./images/FoodCabinet.svg);
     margin: 0;
     padding-left: 0;
-
-    width: 211.37px;
-    height: 431.35px;
-
+    width: var(--cabinet-width);
+    height: var(--cabinet-height);
     position: relative;
-    /* box-sizing: border-box;
-        padding-top: 6vw;
-        width: 40vw;
-        height: 80vh;
-        display: grid;
-        justify-content: center;
-        align-content: start;
-        justify-items: center;
-        align-items: end;
-        grid-template-columns: repeat(4, minmax(7vw, max-content));
-        grid-template-rows: repeat(3, minmax(12vw, max-content));
-        grid-template-areas:
-            "wine milk jam cheese"
-            "meat chicken chicken chips"
-            "pinaple bananas apple salad";
-        row-gap: 3vw; */
 }
 
 .content__cabinet,
@@ -72,93 +83,90 @@ body,
 
 .content__cart {
     background-image: url(./images/Cart.svg);
-
-    width: 276.08px;
-    height: 325.07px;
-
-    /* width: 45vw;
-    height: 16em; */
+    width: var(--cart-width);
+    height: var(--cart-height);
     position: absolute;
-    top: 343px;
-    /* bottom: -100px; */
-    left: -33px;
+    z-index: 9;
+    top: calc(343 * var(--ratio-cabinet-height));
+    left: calc(-33 * var(--ratio-cabinet-width));
+
 }
 
 #wine {
-    /* grid-area: wine;
-    transform: translateX(11px) translateY(-3px); */
-    top: -2px;
-    left: 21px;
+    width: var(--wine-width);
+    height: var(--wine-height);
+    top: calc(-2 * var(--ratio-cabinet-height));
+    left: calc(21 * var(--ratio-cabinet-width));
 }
 
 #milk {
-    /* grid-area: milk;
-    transform: translateX(3px) translateY(-3px); */
-    top: 32px;
-    left: 63px;
+    width: var(--milk-width);
+    height: var(--milk-height);
+    top: calc(32 * var(--ratio-cabinet-height));
+    left: calc(63 * var(--ratio-cabinet-width));
 }
 
 #jam {
-    /* grid-area: jam;
-    transform: translateX(0px) translateY(-3px); */
-    top: 80px;
-    left: 102px;
+    width: var(--jam-width);
+    height: var(--jam-height);
+    top: calc(80 * var(--ratio-cabinet-height));
+    left: calc(102 * var(--ratio-cabinet-width));
 }
 
 #cheese {
-    /* grid-area: cheese;
-    transform: translateX(-11px); */
-    top: 90px;
-    left: 157px;
+    width: var(--cheese-width);
+    height: var(--cheese-height);
+    top: calc(90 * var(--ratio-cabinet-height));
+    left: calc(157 * var(--ratio-cabinet-width));
 }
 
 #meat {
-    /* grid-area: meat;
-    transform: rotate(2deg) translateX(5px) translateY(6px); */
-    top: 168px;
-    left: 5px;
+    width: var(--meat-width);
+    height: var(--meat-height);
+    top: calc(168 * var(--ratio-cabinet-height));
+    left: calc(5 * var(--ratio-cabinet-width));
 }
 
 #chicken {
-    /* grid-area: chicken;
-    transform: rotate(2deg) translateX(-10px) translateY(18px); */
-    top: 170px;
-    left: 56px;
+    width: var(--chicken-width);
+    height: var(--chicken-height);
+    top: calc(170 * var(--ratio-cabinet-height));
+    left: calc(56 * var(--ratio-cabinet-width));
 }
 
 #chips {
-    /* grid-area: chips;
-    transform: translateX(-19px) translateY(9px); */
-    top: 177px;
-    left: 128px;
+    width: var(--chips-width);
+    height: var(--chips-height);
+    top: calc(177 * var(--ratio-cabinet-height));
+    left: calc(128 * var(--ratio-cabinet-width));
 }
 
 #pinaple {
-    /* grid-area: pinaple;
-    transform: translateX(2px) translateY(-3px); */
-    top: 238px;
-    left: 11px;
+    width: var(--pinaple-width);
+    height: var(--pinaple-height);
+    top: calc(238 * var(--ratio-cabinet-height));
+    left: calc(11 * var(--ratio-cabinet-width));
 }
 
 #bananas {
-    /* grid-area: bananas;
-    transform: translateX(3px) translateY(-2px); */
-    top: 266px;
-    left: 57px;
+    width: var(--bananas-width);
+    height: var(--bananas-height);
+    top: calc(266 * var(--ratio-cabinet-height));
+    left: calc(57 * var(--ratio-cabinet-width));
 }
 
 #apple {
-    /* grid-area: apple;
-    transform: translateX(5px) translateY(-3px); */
-    top: 277px;
-    left: 114px;
+    width: var(--apple-width);
+    height: var(--apple-height);
+    top: calc(277 * var(--ratio-cabinet-height));
+    left: calc(114 * var(--ratio-cabinet-width));
 }
 
 #salad {
-    /* grid-area: salad;
-    transform: translateX(0px) translateY(3px); */
-    top: 269px;
-    left: 154px;
+    width: var(--salad-width);
+    height: var(--salad-height);
+    top: calc(269 * var(--ratio-cabinet-height));
+    left: calc(154 * var(--ratio-cabinet-width));
 }
 
 .content__button {
@@ -202,4 +210,13 @@ header a {
     text-align: center;
     text-decoration: none;
     color: lightslategrey;
+    transition: all ease-in-out 0.5s;
+}
+
+@media (max-width: 680px) {
+    header a {
+        font-size: 14px;
+        line-height: 15px;
+        transition: all ease-in-out 0.5s; 
+    }
 }

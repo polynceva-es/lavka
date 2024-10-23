@@ -177,11 +177,11 @@ product.addEventListener("dragstart", (event) => event.preventDefault());
 
     const onMouseUp = () => {
       document.removeEventListener("mousemove", onMouseMove);
-      product.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("mouseup", onMouseUp);
     };
 
     document.addEventListener("mousemove", onMouseMove);
-    product.addEventListener("mouseup", onMouseUp);
+    document.addEventListener("mouseup", onMouseUp);
   };
   product.addEventListener("touchmove", onTouchmove);
   product.addEventListener("mousedown", onMouseDown);
