@@ -55,6 +55,31 @@ const deleteProductFromCart = (product) => {
   showButton();
 };
 
+const handleMove = (product, x, y, currentDroppable) => {
+  product.hidden = true;
+  let elemBelow = document.elementFromPoint(x, y);
+  product.hidden = false;
+  if (!elemBelow) return;
+
+  let cart = elemBelow.closest(".content__cart");
+
+  if (currentDroppable != cart) {
+    if (currentDroppable) {
+      //убрать из корзины
+      deleteProductFromCart(product);
+    }
+    currentDroppable = cart;
+    if (currentDroppable) {
+      //положить в корзину
+      addProductInCart(product);
+      // cart.append(product);
+      // shiftX = shiftX + cart.getBoundingClientRect().left;
+      // shiftY = shiftY + cart.getBoundingClientRect().top;
+      // moveAt(event.clientX, event.clientY);
+    }
+  }
+};
+
 const fillCabinet = (array) => {
   array.map((item) => {
     cabinet.insertAdjacentHTML(
@@ -112,30 +137,7 @@ productsList.forEach((product) => {
 
     let currentDroppable = shiftObject.currentDroppable;
 
-    product.hidden = true;
-    let elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-    product.hidden = false;
-
-    if (!elemBelow) return;
-
-    let droppableBelow = elemBelow.closest(".content__cart");
-
-    if (currentDroppable != droppableBelow) {
-      if (currentDroppable) {
-        //убрать из корзины
-        deleteProductFromCart(product);
-      }
-      currentDroppable = droppableBelow;
-      shiftObject.currentDroppable = droppableBelow;
-      if (currentDroppable) {
-        //положить в корзину
-        addProductInCart(product);
-        // cart.append(product);
-        // shiftX = shiftX + cart.getBoundingClientRect().left;
-        // shiftY = shiftY + cart.getBoundingClientRect().top;
-        // moveAt(event.clientX, event.clientY);
-      }
-    }
+    handleMove(product, touch.clientX, touch.clientY, currentDroppable);
   };
 
   const onMouseDown = (event) => {
@@ -159,29 +161,7 @@ productsList.forEach((product) => {
 
     const onMouseMove = (event) => {
       moveAt(event.pageX, event.pageY);
-
-      product.hidden = true;
-      let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-      product.hidden = false;
-      if (!elemBelow) return;
-
-      let cart = elemBelow.closest(".content__cart");
-
-      if (currentDroppable != cart) {
-        if (currentDroppable) {
-          //убрать из корзины
-          deleteProductFromCart(product);
-        }
-        currentDroppable = cart;
-        if (currentDroppable) {
-          //положить в корзину
-          addProductInCart(product);
-          // cart.append(product);
-          // shiftX = shiftX + cart.getBoundingClientRect().left;
-          // shiftY = shiftY + cart.getBoundingClientRect().top;
-          // moveAt(event.clientX, event.clientY);
-        }
-      }
+      handleMove(product, event.clientX, event.clientY, currentDroppable);
     };
 
     const onMouseUp = () => {
